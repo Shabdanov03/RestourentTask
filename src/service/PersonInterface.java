@@ -13,6 +13,7 @@ public interface PersonInterface {
     String sortByPrice(ArrayList<Foods> foods);
     String removeByFood (ArrayList<Foods> foods,String nameFood);
     void sortByStatus(ArrayList<Person> people );
+    void check (ArrayList<Foods> foods);
     String payForFood(ArrayList<Foods> foods,ArrayList<Person> people);
 
 }

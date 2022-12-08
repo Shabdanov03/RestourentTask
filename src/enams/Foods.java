@@ -1,7 +1,7 @@
 package enams;
 
 public enum Foods {
-    MEAT_POULSTRY(150," MEAT_POULSTRY"),
+    MEAT_POULSTRY(150,"MEAT_POULSTRY"),
     FISH_SEAFOOF(300,"FISH_SEAFOOF"),
     WATER(20,"WATER"),
     TASTY(100,"TASTY");
