@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface PersonInterface {
     String createPerson(ArrayList<Person> people);
+    String insertPerson(ArrayList<Person> people);
     List<Person> getAllPerson(ArrayList<Person> people);
     List<Foods>getAllFood(ArrayList<Foods> foods);
     String sortByPrice(ArrayList<Foods> foods);

@@ -1,31 +1,75 @@
 package impl;
 
 import classes.Person;
+import enams.Country;
 import enams.Foods;
 import enams.Status;
 import impl.comporator.Commorator;
 import service.PersonInterface;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
 public class Personimpl implements PersonInterface {
+    private ArrayList<Person> createdPerson = new ArrayList<>();
+
+    public ArrayList<Person> getCreatedPerson() {
+        return createdPerson;
+    }
+
+    public void setCreatedPerson(ArrayList<Person> createdPerson) {
+        this.createdPerson = createdPerson;
+    }
 
     @Override
     public String createPerson(ArrayList<Person> people) {
-        ArrayList<Person> createPerson = new ArrayList<>();
-        for (Person person : people) {
-            createPerson.add(person);
-            System.out.println(createPerson);
+        this.createdPerson.addAll(people);
+            return "Person successful created !";
         }
-        return "Person successful created !";
+
+    @Override
+    public String insertPerson(ArrayList<Person> people) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" Enter by name : ");
+        String name= scanner.nextLine();
+        System.out.println(" Enter by year, month, day : ");
+        LocalDate year = LocalDate.of(scanner.nextInt(), scanner.nextInt(),scanner.nextInt());
+        System.out.println(" 1.Client.  2.Kitchen Manager. 3.Waiter.  4.Head Chef ");
+        System.out.println("Enter by command : ");
+        int num = scanner.nextInt();
+        Status status=null;
+        switch (num){
+            case 1 -> status=Status.CLIENT;
+            case 2 -> status=Status.KITCHEN_MANAGER;
+            case 3 -> status=Status.WAITER;
+            case 4 -> status=Status.HEAD_CHEF;
+            default -> System.out.println(" No such status");
+        }
+        System.out.println(" Enter by bank account : ");
+        double bank = scanner.nextDouble();
+        System.out.println("1.Kyrgyzstan.  2.French.  3.Russian.  4.USA.");
+        System.out.println(" Enter by command :");
+        Country country= null;
+        int number = scanner.nextInt();
+        switch (number){
+            case 1 -> country=Country.KYRGYZSTAN;
+            case 2 -> country=Country.FRENCH;
+            case 3 -> country=Country.RUSSIAN;
+            case 4 -> country=Country.USA ;
+            default -> System.out.println(" No such country");
+        }
+        Person person =new Person(name,year,status,bank,country);
+        createdPerson.add(person);
+            return " Successfully insert !";
+
     }
 
     @Override
     public List<Person> getAllPerson(ArrayList<Person> people) {
-        return people;
+        return this.createdPerson;
     }
 
     @Override
@@ -113,12 +157,11 @@ public class Personimpl implements PersonInterface {
     @Override
     public String payForFood(ArrayList<Foods> foods, ArrayList<Person> people) {
         try {
-
             int i = 0;
             if (people.get(i).getBankAccount() > 0) {
                 Person clientPerson = null;
                 for (Person person : people) {
-                    if (person.getStatus().equals(Status.CLIENT)) clientPerson = person;
+                        if (person.getStatus().equals(Status.CLIENT)) clientPerson = person;
                 }
                 double summa = 0;
                 for (Foods food : foods) {

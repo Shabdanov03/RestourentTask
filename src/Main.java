@@ -26,7 +26,7 @@ public class Main {
             System.out.println(" ========Commands========" +
                     "\n========================================================================\n" +
                     "1.get oll Person.  2.Menu by Food .  3.create person.  4.Sort by price " +
-                    "\n5.Sort By Status. 6.Order food.  7.Remove by food.  8.Pay for food.\n" +
+                    "\n5.Sort By Status. 6.Order food.  7.Remove by food.  8.Pay for food. 9.Insert person\n" +
                     "========================================================================");
             int number = new Scanner(System.in).nextInt();
             if (number == 1) {
@@ -47,6 +47,8 @@ public class Main {
                 System.out.println(personimpl.removeByFood(foods, name));
             } else if (number == 8) {
                 System.out.println(personimpl.payForFood(foods, people));
+            } else if (number == 9) {
+                System.out.println(personimpl.insertPerson(people));
             } else {
                 System.err.println(" no such command !");
             }
